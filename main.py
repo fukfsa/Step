@@ -149,9 +149,9 @@ def get_app_token(login_token):
 
 if __name__ == "__main__":
     # 用户名（单用户的格式为 13800138000 ，多用户用#隔开，例如13800138000#13800138000#13800138000）
-    user = str(os.environ['USERNAME'])
+    user = str(os.environ['Task_user'])
     # 登录密码（用#隔开，例如123456#123456#123456）
-    passwd = str(os.environ['Task_user'])
+    passwd = str(os.environ['Task_passwd'])
 
 
     # 要修改的步数，直接输入想要修改的步数值，留空为随机步数20000至29999之间
