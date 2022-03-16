@@ -4,8 +4,8 @@
 import requests, time, re, json, random
 import os
 
-TG_BOT_TOKEN = ""  # telegram bot token 自行申请
-TG_USER_ID = ""  # telegram 用户ID
+TG_BOT_TOKEN = str(os.environ['TG_BOT_TOKEN'])  # telegram bot token 自行申请
+TG_USER_ID = str(os.environ['TG_USER_ID'])  # telegram 用户ID
 
 
 def telegram_bot(title, content):
@@ -149,9 +149,9 @@ def get_app_token(login_token):
 
 if __name__ == "__main__":
     # 用户名（单用户的格式为 13800138000 ，多用户用#隔开，例如13800138000#13800138000#13800138000）
-    user = "18292647015"
+    user = str(os.environ['USERNAME'])
     # 登录密码（用#隔开，例如123456#123456#123456）
-    passwd = "d8bPRVkp"
+    passwd = str(os.environ['passwd'])
 
     # 要修改的步数，直接输入想要修改的步数值，留空为随机步数20000至29999之间
     step = ""
