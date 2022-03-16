@@ -18,8 +18,9 @@ on:
 
 
 jobs:
-  Task:
+  User1:
     runs-on: ubuntu-latest
+    environment: Task1
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.9
@@ -32,9 +33,9 @@ jobs:
         pip install -r requirements.txt
     - name: Run
       env:
-        TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}}
-        TG_USER_ID: ${{secrets.TG_USER_ID}}
-        user: ${{secrets.USERNAME}}
-        passwd: ${{secrets.PASSWORD}}
+        Task_TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}}
+        Task_TG_USER_ID: ${{secrets.TG_USER_ID}}
+        Task_user: ${{secrets.USERNAME}}
+        Task_passwd: ${{secrets.PASSWORD}}
       run: python main.py
 
