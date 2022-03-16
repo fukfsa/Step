@@ -9,20 +9,15 @@
 name: 刷步数
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 #   schedule:
 #     - cron:  '15 4 * * *'
   watch:
     types: started
 
 jobs:
-  build:
+  Task:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.9
