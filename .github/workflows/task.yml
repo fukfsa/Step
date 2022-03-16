@@ -10,15 +10,16 @@ name: Sport
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-    - main
+#   push:
+#     branches:
+#     - main
 #   schedule:
 #     - cron:  '15 4 * * *'
 
 
 jobs:
   Task:
+    
     runs-on: ubuntu-latest
     steps:
     - name: Set up Python 3.9
