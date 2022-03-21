@@ -8,13 +8,15 @@
 
 name: Sport
 
+
 on:
   workflow_dispatch:
-#   push:
-#     branches:
-#     - main
+  # push:
+  #   branches: [ main ]
+  
   schedule:
-    - cron:  '15 4 * * *'
+  # Github Action 使用世界标准时间（UTC），北京时间（UTC+8）转换为世界标准时需要减去8小时
+    - cron:  '15 22 * * *' # 默认在每天 UTC 16:30 （北京时间 0:30）执行
 
 
 jobs:
