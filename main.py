@@ -120,6 +120,7 @@ def main(user, passwd, step):
     response = requests.post(url, data=data, headers=head).json()
     # print(response)
     result = f"{user[:4]}****{user[-4:]}: [{now}] 修改步数（{step}）" + response['message']
+    
     #pushpius
     title = "小米运动刷步数"
     pushtoken = str(os.environ['Task_push']) #在pushpush网站中可以找到
@@ -132,6 +133,8 @@ def main(user, passwd, step):
     body=json.dumps(data).encode(encoding='utf-8')
     headers = {'Content-Type':'application/json'}
     requests.post(url,data=body,headers=headers)
+    print(pushtoken)
+    
     print(result)
     return result
 
