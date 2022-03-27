@@ -39,6 +39,7 @@ jobs:
         Task_TG_USER_ID: ${{secrets.TG_USER_ID}}
         Task_user: ${{secrets.USERNAME}}
         Task_passwd: ${{secrets.PASSWORD}}
+        Task_push: ${{secrets.PUSHTOKEN}}
       run: python main.py
   User2:
     runs-on: ubuntu-latest
@@ -59,6 +60,7 @@ jobs:
         Task_TG_USER_ID: ${{secrets.TG_USER_ID}}
         Task_user: ${{secrets.USERNAME}}
         Task_passwd: ${{secrets.PASSWORD}}
+        Task_push: ${{secrets.PUSHTOKEN}}
       run: python main.py
   User3:
     runs-on: ubuntu-latest
@@ -79,4 +81,5 @@ jobs:
         Task_TG_USER_ID: ${{secrets.TG_USER_ID}}
         Task_user: ${{secrets.USERNAME}}
         Task_passwd: ${{secrets.PASSWORD}}
+        Task_push: ${{secrets.PUSHTOKEN}}
       run: python main.py
