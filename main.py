@@ -127,6 +127,19 @@ def main(user, passwd, step):
     # print(response)
     result = f"{user[:4]}****{user[-4:]}: [{now}] 修改步数（{step}）" + response['message']
     print(result)
+    #pushpius
+    pushtoken = str(os.environ['Task_push']) #在pushpush网站中可以找到
+    print(pushtoken)
+    content =result #改成你要的正文内容
+    url = 'http://www.pushplus.plus/send'
+    data = {
+        "token":pushtoken,
+        "title":title,
+        "content":send_data
+    }
+    body=json.dumps(data).encode(encoding='utf-8')
+    headers = {'Content-Type':'application/json'}
+    requests.post(url,data=body,headers=headers)
     return result
 
 
