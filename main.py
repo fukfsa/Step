@@ -8,8 +8,6 @@ import os
 
 def telegram_bot(title, content):
     print("\n")
-    tg_bot_token = TG_BOT_TOKEN
-    tg_user_id = TG_USER_ID
     if "Task_TG_BOT_TOKEN" in os.environ and "Task_TG_USER_ID" in os.environ:
         tg_bot_token = os.environ["Task_TG_BOT_TOKEN"]
         tg_user_id = os.environ["Task_TG_USER_ID"]
