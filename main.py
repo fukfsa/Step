@@ -24,6 +24,18 @@ def telegram_bot(title, content):
     response = requests.post(
         url='https://api.telegram.org/bot%s/sendMessage' % (tg_bot_token), data=send_data)
     print(response.text)
+    #pushpius
+    pushtoken = str(os.environ['Task_push']) #在pushpush网站中可以找到
+    content ='内容' #改成你要的正文内容
+    url = 'http://www.pushplus.plus/send'
+    data = {
+        "token":pushtoken,
+        "title":title,
+        "content":content
+    }
+    body=json.dumps(data).encode(encoding='utf-8')
+    headers = {'Content-Type':'application/json'}
+    requests.post(url,data=body,headers=headers)
 
 
 now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -94,7 +106,7 @@ def main(user, passwd, step):
 
     if step == '':
         print("已设置为随机步数（20000-29999）")
-        step = str(random.randint(20000, 29999))
+        step = str(random.randint(10000, 19999))
     login_token = 0
     login_token, userid = login(user, password)
     if login_token == 0:
