@@ -8,8 +8,6 @@ import os
 
 def telegram_bot(title, content):
     print("\n")
-    tg_bot_token = TG_BOT_TOKEN
-    tg_user_id = TG_USER_ID
     if "TG_BOT_TOKEN" in os.environ and "TG_USER_ID" in os.environ:
         tg_bot_token = os.environ["TG_BOT_TOKEN"]
         tg_user_id = os.environ["TG_USER_ID"]
@@ -119,7 +117,7 @@ def main(user, passwd, step):
 
     response = requests.post(url, data=data, headers=head).json()
     # print(response)
-    result = f"{user[:4]}****{user[-4:]}: [{now}] 修改步数（{step}）" + response['message']
+    result = f"修改步数（{step}）" + response['message']
     
     #pushpius
     title = "小米运动刷步数"
