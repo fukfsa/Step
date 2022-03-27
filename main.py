@@ -4,8 +4,8 @@
 import requests, time, re, json, random
 import os
 
-TG_BOT_TOKEN = os.environ['Task_TG_BOT_TOKEN'] # telegram bot token 自行申请
-TG_USER_ID = os.environ['Task_TG_USER_ID']  # telegram 用户ID
+TG_BOT_TOKEN = ""  # telegram bot token 自行申请
+TG_USER_ID = ""  # telegram 用户ID
 
 
 def telegram_bot(title, content):
@@ -24,22 +24,6 @@ def telegram_bot(title, content):
     response = requests.post(
         url='https://api.telegram.org/bot%s/sendMessage' % (tg_bot_token), data=send_data)
     print(response.text)
-
-    #pushplus
-    pushtoken =  os.environ["PUSHTOKEN"]#在pushpush网站中可以找到
-    #title= '刷步数' #改成你要的标题内容
-    #content ='内容' #改成你要的正文内容
-    url = 'http://www.pushplus.plus/send'
-    data = {
-        "token":pushtoken,
-        "title":title,
-        "content":content
-    }
-    body=json.dumps(data).encode(encoding='utf-8')
-    headers = {'Content-Type':'application/json'}
-    requests.post(url,data=body,headers=headers)
-
-
 
 
 now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -110,7 +94,7 @@ def main(user, passwd, step):
 
     if step == '':
         print("已设置为随机步数（20000-29999）")
-        step = str(random.randint(10000, 19999))
+        step = str(random.randint(20000, 29999))
     login_token = 0
     login_token, userid = login(user, password)
     if login_token == 0:
@@ -169,11 +153,11 @@ if __name__ == "__main__":
     # 登录密码（用#隔开，例如123456#123456#123456）
     passwd = str(os.environ['Task_passwd'])
 
-#直接输入想要修改的步数值，留空为随机步数20000至29999之间
+    # 要修改的步数，直接输入想要修改的步数值，留空为随机步数20000至29999之间
     step = ""
 
     user_list = user.split('#')
-    passwd_list = passwd.split('
+    passwd_list = passwd.split('#')
     setp_array = step.split('-')
 
     if len(user_list) == len(passwd_list):
@@ -187,4 +171,3 @@ if __name__ == "__main__":
         telegram_bot("小米运动", push)
     else:
         print('用户名和密码数量不对')
-# encoding:utf-8
