@@ -120,20 +120,19 @@ def main(user, passwd, step):
     response = requests.post(url, data=data, headers=head).json()
     # print(response)
     result = f"{user[:4]}****{user[-4:]}: [{now}] 修改步数（{step}）" + response['message']
-    print(result)
     #pushpius
+    title = "小米运动刷步数"
     pushtoken = str(os.environ['Task_push']) #在pushpush网站中可以找到
-    print(pushtoken)
-    content =result #改成你要的正文内容
     url = 'http://www.pushplus.plus/send'
     data = {
         "token":pushtoken,
-        "title":"Demo",
-        "content":content
+        "title":title,
+        "content":result
     }
     body=json.dumps(data).encode(encoding='utf-8')
     headers = {'Content-Type':'application/json'}
     requests.post(url,data=body,headers=headers)
+    print(result)
     return result
 
 
