@@ -8,7 +8,7 @@ import os
 
 def telegram_bot(title, content):
     print("\n")
-    if "Task_TG_BOT_TOKEN" in os.environ and "Task_TG_USER_ID" in os.environ:
+    if "TG_BOT_TOKEN" in os.environ and "TG_USER_ID" in os.environ:
         tg_bot_token = os.environ["Task_TG_BOT_TOKEN"]
         tg_user_id = os.environ["Task_TG_USER_ID"]
     if not tg_bot_token or not tg_user_id:
@@ -134,7 +134,6 @@ def main(user, passwd, step):
     body=json.dumps(data).encode(encoding='utf-8')
     headers = {'Content-Type':'application/json'}
     requests.post(url,data=body,headers=headers)
-    print(pushtoken)
     
     print(result)
     return result
