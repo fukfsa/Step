@@ -8,23 +8,17 @@ import os
 
 def telegram_bot(title, content):
     print("\n")
-
+    tg_bot_token = TG_BOT_TOKEN
+    tg_user_id = TG_USER_ID
+    if "TG_BOT_TOKEN" in os.environ and "TG_USER_ID" in os.environ:
+        tg_bot_token = os.environ["TG_BOT_TOKEN"]
+        tg_user_id = os.environ["TG_USER_ID"]
+    if not tg_bot_token or not tg_user_id:
+        print("Telegram推送的tg_bot_token或者tg_user_id未设置!!\n取消推送")
+        return
     print("Telegram 推送开始")
     send_data = {"chat_id": tg_user_id, "text": title +
                                                 '\n\n' + content}
-
-    #pushpius
-    pushtoken = str(os.environ['Task_push']) #在pushpush网站中可以找到
-    #content ='内容' #改成你要的正文内容
-    url = 'http://www.pushplus.plus/send'
-    data = {
-        "token":pushtoken,
-        "title":title,
-        "content":send_data
-    }
-    body=json.dumps(data).encode(encoding='utf-8')
-    headers = {'Content-Type':'application/json'}
-    requests.post(url,data=body,headers=headers)
 
 
 now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -134,8 +128,8 @@ def main(user, passwd, step):
     url = 'http://www.pushplus.plus/send'
     data = {
         "token":pushtoken,
-        "title":title,
-        "content":send_data
+        "title":"Demo",
+        "content":content
     }
     body=json.dumps(data).encode(encoding='utf-8')
     headers = {'Content-Type':'application/json'}
