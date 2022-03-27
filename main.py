@@ -10,9 +10,9 @@ def telegram_bot(title, content):
     print("\n")
     tg_bot_token = TG_BOT_TOKEN
     tg_user_id = TG_USER_ID
-    if "TG_BOT_TOKEN" in os.environ and "TG_USER_ID" in os.environ:
-        tg_bot_token = os.environ["TG_BOT_TOKEN"]
-        tg_user_id = os.environ["TG_USER_ID"]
+    if "Task_TG_BOT_TOKEN" in os.environ and "Task_TG_USER_ID" in os.environ:
+        tg_bot_token = os.environ["Task_TG_BOT_TOKEN"]
+        tg_user_id = os.environ["Task_TG_USER_ID"]
     if not tg_bot_token or not tg_user_id:
         print("Telegram推送的tg_bot_token或者tg_user_id未设置!!\n取消推送")
         return
