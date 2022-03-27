@@ -40,4 +40,43 @@ jobs:
         Task_user: ${{secrets.USERNAME}}
         Task_passwd: ${{secrets.PASSWORD}}
       run: python main.py
-
+  User2:
+    runs-on: ubuntu-latest
+    environment: Task2
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run
+      env:
+        Task_TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}}
+        Task_TG_USER_ID: ${{secrets.TG_USER_ID}}
+        Task_user: ${{secrets.USERNAME}}
+        Task_passwd: ${{secrets.PASSWORD}}
+      run: python main.py
+  User3:
+    runs-on: ubuntu-latest
+    environment: Task3
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run
+      env:
+        Task_TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}}
+        Task_TG_USER_ID: ${{secrets.TG_USER_ID}}
+        Task_user: ${{secrets.USERNAME}}
+        Task_passwd: ${{secrets.PASSWORD}}
+      run: python main.py
