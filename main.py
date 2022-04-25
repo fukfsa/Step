@@ -4,22 +4,27 @@
 import requests, time, re, json, random
 import os
 
+TG_BOT_TOKEN = ""  # telegram bot token 自行申请
+TG_USER_ID = ""  # telegram 用户ID
 
 
 def telegram_bot(title, content):
     print("\n")
+    tg_bot_token = TG_BOT_TOKEN
+    tg_user_id = TG_USER_ID
     if "TG_BOT_TOKEN" in os.environ and "TG_USER_ID" in os.environ:
-        tg_bot_token = os.environ["Task_TG_BOT_TOKEN"]
-        tg_user_id = os.environ["Task_TG_USER_ID"]
+        tg_bot_token = os.environ["TG_BOT_TOKEN"]
+        tg_user_id = os.environ["TG_USER_ID"]
     if not tg_bot_token or not tg_user_id:
         print("Telegram推送的tg_bot_token或者tg_user_id未设置!!\n取消推送")
         return
     print("Telegram 推送开始")
     send_data = {"chat_id": tg_user_id, "text": title +
-                 '\n\n'+content, "disable_web_page_preview": "true"}
+                                                '\n\n' + content, "disable_web_page_preview": "true"}
     response = requests.post(
         url='https://api.telegram.org/bot%s/sendMessage' % (tg_bot_token), data=send_data)
     print(response.text)
+
 
 
 now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -89,7 +94,7 @@ def main(user, passwd, step):
         return
 
     if step == '':
-        print("已设置为随机步数（10000-19999）")
+        print("已设置为随机步数（20000-29999）")
         step = str(random.randint(10000, 19999))
     login_token = 0
     login_token, userid = login(user, password)
@@ -120,20 +125,21 @@ def main(user, passwd, step):
 
     response = requests.post(url, data=data, headers=head).json()
     # print(response)
+    #result = f"{user[:4]}****{user[-4:]}: [{now}] 修改步数（{step}）" + response['message']
     result = f"修改步数（{step}）" + response['message']
-    
-    #pushpius
+
+    # pushpius
     title = "小米运动刷步数"
-    pushtoken = str(os.environ['Task_push']) #在pushpush网站中可以找到
+    pushtoken = str(os.environ['Task_push'])  # 在pushpush网站中可以找到
     url = 'http://www.pushplus.plus/send'
     data = {
-        "token":pushtoken,
-        "title":title,
-        "content":result
+        "token": pushtoken,
+        "title": title,
+        "content": result
     }
-    body=json.dumps(data).encode(encoding='utf-8')
-    headers = {'Content-Type':'application/json'}
-    requests.post(url,data=body,headers=headers)
+    body = json.dumps(data).encode(encoding='utf-8')
+    headers = {'Content-Type': 'application/json'}
+    requests.post(url, data=body, headers=headers)
     
     print(result)
     return result
