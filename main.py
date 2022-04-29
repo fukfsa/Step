@@ -27,16 +27,13 @@ def telegram_bot(title, content):
     
  # serverchan 推送
 def sct(content):
-    notifyToken = os.environ['SCT_KEY']
-    if notifyToken = '':
-        print("SCT_KEY未设置")
-        return
-    url = "https://sctapi.ftqq.com/{}.send"
-    body = {
-        "title": content,
-    }
-    requests.post(url.format(notifyToken), data=body)
-    print("消息经Serverchan-Turbo推送成功")
+    if os.environ.get('SCT_KEY'):
+        url = "https://sctapi.ftqq.com/{}.send"
+        body = {
+            "title": content,
+        }
+        requests.post(url.format(notifyToken), data=body)
+        print("消息经Serverchan-Turbo推送成功")
 
 now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 headers = {
