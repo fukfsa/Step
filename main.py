@@ -34,7 +34,7 @@ def sct(content):
         }
         requests.post(url.format(os.environ["SCT_KEY"]), data=body)
         print("消息经Serverchan-Turbo推送成功")
-    else
+    else:
         print("SCT_KEY未设置")
 
 now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
