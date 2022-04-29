@@ -12,9 +12,9 @@ def telegram_bot(title, content):
     print("\n")
     tg_bot_token = TG_BOT_TOKEN
     tg_user_id = TG_USER_ID
-    if "Task_TG_BOT_TOKEN" in os.environ and "Task_TG_USER_ID" in os.environ:
-        tg_bot_token = os.environ["Task_TG_USER_ID"]
-        tg_user_id = os.environ["Task_TG_BOT_TOKEN"]
+    if "TG_BOT_TOKEN" in os.environ and "TG_USER_ID" in os.environ:
+        tg_bot_token = os.environ["TG_BOT_TOKEN"]
+        tg_user_id = os.environ["TG_USER_ID"]
     if not tg_bot_token or not tg_user_id:
         print("Telegram推送的tg_bot_token或者tg_user_id未设置!!\n取消推送")
         return
@@ -22,10 +22,18 @@ def telegram_bot(title, content):
     send_data = {"chat_id": tg_user_id, "text": title +
                                                 '\n\n' + content, "disable_web_page_preview": "true"}
     response = requests.post(
-        url='https://api.telegram.org/bot+ tg_bot_token +/sendMessage', data=send_data)
+        url='https://api.telegram.org/bot%s/sendMessage' % (tg_bot_token), data=send_data)
     print(response.text)
-
-
+    
+ # serverchan 推送
+def sct(title):
+    notifyToken = os.environ['SCT_KEY']
+    url = "https://sctapi.ftqq.com/{}.send"
+    body = {
+        "title": result,
+    }
+    requests.post(url.format(notifyToken), data=body)
+    print("消息经Serverchan-Turbo推送成功")
 
 now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 headers = {
@@ -94,7 +102,7 @@ def main(user, passwd, step):
         return
 
     if step == '':
-        print("已设置为随机步数（10000-19999）")
+        print("已设置为随机步数（20000-29999）")
         step = str(random.randint(10000, 19999))
     login_token = 0
     login_token, userid = login(user, password)
@@ -185,5 +193,6 @@ if __name__ == "__main__":
                 step = ''
             push += main(user_list[line], passwd_list[line], step) + '\n'
         telegram_bot("小米运动", push)
+        sct(title)
     else:
         print('用户名和密码数量不对')
