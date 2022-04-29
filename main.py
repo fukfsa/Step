@@ -28,6 +28,9 @@ def telegram_bot(title, content):
  # serverchan 推送
 def sct(content):
     notifyToken = os.environ['SCT_KEY']
+    if notifyToken = '':
+        print("SCT_KEY未设置")
+        return
     url = "https://sctapi.ftqq.com/{}.send"
     body = {
         "title": content,
