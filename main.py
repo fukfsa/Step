@@ -26,7 +26,7 @@ def telegram_bot(title, content):
     print(response.text)
     
  # serverchan 推送
-def sct(title):
+def sct():
     notifyToken = os.environ['SCT_KEY']
     url = "https://sctapi.ftqq.com/{}.send"
     body = {
