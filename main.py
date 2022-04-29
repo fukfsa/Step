@@ -26,11 +26,11 @@ def telegram_bot(title, content):
     print(response.text)
     
  # serverchan 推送
-def sct():
+def sct(content):
     notifyToken = os.environ['SCT_KEY']
     url = "https://sctapi.ftqq.com/{}.send"
     body = {
-        "title": result,
+        "title": content,
     }
     requests.post(url.format(notifyToken), data=body)
     print("消息经Serverchan-Turbo推送成功")
@@ -193,6 +193,6 @@ if __name__ == "__main__":
                 step = ''
             push += main(user_list[line], passwd_list[line], step) + '\n'
         telegram_bot("小米运动", push)
-        sct()
+        sct(push)
     else:
         print('用户名和密码数量不对')
