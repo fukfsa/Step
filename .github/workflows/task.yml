@@ -40,6 +40,7 @@ jobs:
         Task_user: ${{secrets.USERNAME}}
         Task_passwd: ${{secrets.PASSWORD}}
         Task_push: ${{secrets.PUSHTOKEN}}
+        SCT_KEY: ${{secrets.SCT_KEY}}
       run: python main.py
   User2:
     runs-on: ubuntu-latest
@@ -61,7 +62,6 @@ jobs:
         Task_user: ${{secrets.USERNAME}}
         Task_passwd: ${{secrets.PASSWORD}}
         Task_push: ${{secrets.PUSHTOKEN}}
-        SCT_KEY: ${{secrets.SCT_KEY}}
       run: python main.py
   User3:
     runs-on: ubuntu-latest
