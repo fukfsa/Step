@@ -35,11 +35,11 @@ jobs:
         pip install -r requirements.txt
     - name: Run
       env:
-        Task_TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}}
-        Task_TG_USER_ID: ${{secrets.TG_USER_ID}}
+        #Task_TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}}
+        #Task_TG_USER_ID: ${{secrets.TG_USER_ID}}
         Task_user: ${{secrets.USERNAME}}
         Task_passwd: ${{secrets.PASSWORD}}
-        Task_push: ${{secrets.PUSHTOKEN}}
+        #Task_push: ${{secrets.PUSHTOKEN}}
         SCT_KEY: ${{secrets.SCT_KEY}}
       run: python main.py
   User2:
