@@ -105,7 +105,7 @@ def main(user, passwd, step):
 
     if step == '':
         print("已设置为随机步数（20000-29999）")
-        step = str(random.randint(10000, 19999))
+        step = str(random.randint(20000, 29999))
     login_token = 0
     login_token, userid = login(user, password)
     if login_token == 0:
@@ -134,22 +134,23 @@ def main(user, passwd, step):
     data = f'userid={userid}&last_sync_data_time=1597306380&device_type=0&last_deviceid=DA932FFFFE8816E7&data_json={data_json}'
 
     response = requests.post(url, data=data, headers=head).json()
-    # print(response)
+    print(response)
+    print(user)
     #result = f"{user[:4]}****{user[-4:]}: [{now}] 修改步数（{step}）" + response['message']
     result = f"修改步数（{step}）" + response['message']
 
-    # pushpius
-    title = "小米运动刷步数"
-    pushtoken = str(os.environ['Task_push'])  # 在pushpush网站中可以找到
-    url = 'http://www.pushplus.plus/send'
-    data = {
-        "token": pushtoken,
-        "title": title,
-        "content": result
-    }
-    body = json.dumps(data).encode(encoding='utf-8')
-    headers = {'Content-Type': 'application/json'}
-    requests.post(url, data=body, headers=headers)
+#     # pushpius
+#     title = "小米运动刷步数"
+#     pushtoken = str(os.environ['Task_push'])  # 在pushpush网站中可以找到
+#     url = 'http://www.pushplus.plus/send'
+#     data = {
+#         "token": pushtoken,
+#         "title": title,
+#         "content": result
+#     }
+#     body = json.dumps(data).encode(encoding='utf-8')
+#     headers = {'Content-Type': 'application/json'}
+#     requests.post(url, data=body, headers=headers)
     
     print(result)
     return result
